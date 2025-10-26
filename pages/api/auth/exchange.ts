@@ -61,8 +61,10 @@ export default async function handler(
     }
 
     const rpcData = await rpcResponse.json();
+    if (!Array.isArray(rpcData) || rpcData.length === 0 || !rpcData[0]?.portal_user_id) {
+      throw new Error("RPC did not return a valid portal_user_id");
+    }
     const { portal_user_id } = rpcData[0]; // The RPC returns the portal_user_id
-
     // 4) Mint JWT for authenticated user with portal_user_id
     const token = jwt.sign(
       {
