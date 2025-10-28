@@ -42,6 +42,7 @@ export default async function handler(
         headers: {
           "Content-Type": "application/json",
           "Accept-Profile": "api",
+          "Content-Profile": "api",
           Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify({
